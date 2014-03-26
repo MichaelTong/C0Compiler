@@ -1,0 +1,18 @@
+int Fibonacci(int n){
+	if(n==0)
+		return (1);
+	if(n==1)
+		return (1);
+	else
+		return (Fibonacci(n-2)+Fibonacci(n-1));
+}
+
+void main(){
+	int k;
+	printf("Please input the Fabonacci number you want to know:");
+	scanf(k);
+	k=Fibonacci(k);
+	printf(k);
+	scanf(k);
+	return;
+}

@@ -1,0 +1,17 @@
+int _a;
+int getCharByInt(int i){
+	int sum;
+	sum = 0;
+	do{
+		i = i + 1;
+		sum = sum + i;
+	}while(i<=_a)
+	return (sum);
+}
+void main()
+{
+	int sum;
+	_a = 100;
+	scanf(sum);
+	printf(getCharByInt(sum));
+}

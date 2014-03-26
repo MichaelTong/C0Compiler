@@ -1,0 +1,6 @@
+const int a = 1;
+int c;
+void main(){
+	c=1;
+	printf c;
+}

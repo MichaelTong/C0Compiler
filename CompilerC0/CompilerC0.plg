@@ -1,0 +1,55 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CompilerC0 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\tonghao\LOCALS~1\Temp\RSP8.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/CompilerC0.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\CompilerC0\CompilerC0.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\tonghao\LOCALS~1\Temp\RSP8.tmp" 
+Creating temporary file "C:\DOCUME~1\tonghao\LOCALS~1\Temp\RSP9.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/CompilerC0.pdb" /debug /machine:I386 /out:"Debug/CompilerC0.exe" /pdbtype:sept 
+.\Debug\BasicBlock.obj
+.\Debug\BBSetMgr.obj
+.\Debug\CodeGenerator.obj
+.\Debug\CompilerC0.obj
+.\Debug\ConflictTable.obj
+.\Debug\CSDOptimizer.obj
+.\Debug\DAGNode.obj
+.\Debug\DAGTable.obj
+.\Debug\DSAOptimizer.obj
+.\Debug\DTS.obj
+.\Debug\Executor.obj
+.\Debug\GRDOptimizer.obj
+.\Debug\Item.obj
+.\Debug\Lexer.obj
+.\Debug\Num.obj
+.\Debug\Parser.obj
+.\Debug\Quadruple.obj
+.\Debug\QuadrupleMgr.obj
+.\Debug\SymbolTable.obj
+.\Debug\SymbolTableMgr.obj
+.\Debug\Tag.obj
+.\Debug\Token.obj
+.\Debug\Type.obj
+.\Debug\Word.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\tonghao\LOCALS~1\Temp\RSP9.tmp"
+<h3>Output Window</h3>
+Compiling...
+CompilerC0.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+CompilerC0.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

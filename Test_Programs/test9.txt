@@ -1,0 +1,29 @@
+int a,b;
+void function1(){
+	const int a=1,b=1;
+	printf("function1: ");
+	printf(a);
+	printf(b);
+	function2();
+}
+void function2(){
+	const int a=3,b=4;
+	printf("function2: ");
+	printf(a);
+	printf(b);
+}
+void main(){
+	int c[3];
+	b=a;
+	a=5;
+	c[0]=0;
+	c[1]=1;
+	c[2]=2;
+	a=c[0]+5;
+	function1();
+	printf("main: ");
+	printf(a);
+	printf(b);
+	function1();
+	printf(">");
+}
