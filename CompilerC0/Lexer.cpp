@@ -4,7 +4,7 @@
 #include "Num.h"
 #include "CompilerC0.h"
 #include <sstream>
-#include <ctype.h>
+#include <cType.h>
 
 void Lexer::reserve(Word w){
 	words.push_back(w);
@@ -19,19 +19,19 @@ Lexer::Lexer(FILE *i){
 	in=i;
 	preSerial=0;
 	words=std::vector<Word>();
-	reserve(Word("do",Tag.DOTK));
-	reserve(Word("const",Tag.CONSTTK));
-	reserve(Word("main",Tag.MAINTK));
-	reserve(Word("if",Tag.IFTK));
-	reserve(Word("else",Tag.ELSETK));
-	reserve(Word("while",Tag.WHILETK));
-	reserve(Word("for",Tag.FORTK));
-	reserve(Word("scanf",Tag.SCANFTK));
-	reserve(Word("printf",Tag.PRINTFTK));
-	reserve(Word("return",Tag.RETURNTK));
-	reserve(Type.Char);
-	reserve(Type.Int);
-	reserve(Type.Void);
+	reserve(Word("do",Tag::DOTK));
+	reserve(Word("const",Tag::CONSTTK));
+	reserve(Word("main",Tag::MAINTK));
+	reserve(Word("if",Tag::IFTK));
+	reserve(Word("else",Tag::ELSETK));
+	reserve(Word("while",Tag::WHILETK));
+	reserve(Word("for",Tag::FORTK));
+	reserve(Word("scanf",Tag::SCANFTK));
+	reserve(Word("printf",Tag::PRINTFTK));
+	reserve(Word("return",Tag::RETURNTK));
+	reserve(Type::Char);
+	reserve(Type::Int);
+	reserve(Type::Void);
 }
 
 Lexer::~Lexer(){
@@ -82,10 +82,10 @@ Token Lexer::scan(int& lineNo, int& serialNo){
 			break;
 	}
 	switch(peek){
-	case'=': if(readch('=',lineNo,serialNo)) return Word.eql; else return Token('=');
-	case'!': if(readch('=',lineNo,serialNo)) return Word.neq; else return Token('!');
-	case'<': if(readch('=',lineNo,serialNo)) return Word.leq; else return Word.lss;
-	case'>': if(readch('=',lineNo,serialNo)) return Word.geq; else return Word.gre;
+	case'=': if(readch('=',lineNo,serialNo)) return Word::eql; else return Token('=');
+	case'!': if(readch('=',lineNo,serialNo)) return Word::neq; else return Token('!');
+	case'<': if(readch('=',lineNo,serialNo)) return Word::leq; else return Word::lss;
+	case'>': if(readch('=',lineNo,serialNo)) return Word::geq; else return Word::gre;
 	}
 	if(isdigit(peek)){
 		std::string temp="";
@@ -101,7 +101,7 @@ Token Lexer::scan(int& lineNo, int& serialNo){
 		back(lineNo,serialNo);
 		peek=' ';
 		if(temp.length()!=1&&temp[0]=='0')
-			return Word(temp,Tag.ILLEGALNUM);
+			return Word(temp,Tag::ILLEGALNUM);
 		return Num(temp);
 	}
 	if(isalpha(peek)||peek=='_'){
@@ -111,7 +111,8 @@ Token Lexer::scan(int& lineNo, int& serialNo){
 			temp+=peek;
 			readch(serialNo);
 		} while (isdigit(peek)||isalpha(peek)||peek=='_');
-		for(int i=0;i<words.size();i++){
+		int i;
+		for(i=0;i<words.size();i++){
 			if(temp==words[i].toString())
 				break;
 		}
@@ -119,7 +120,7 @@ Token Lexer::scan(int& lineNo, int& serialNo){
 		peek=' ';
 		if(i<words.size())
 			return words[i];
-		Word w=Word(temp,Tag.IDEN);
+		Word w=Word(temp,Tag::IDEN);
 		words.push_back(w);
 		return w;
 	}
@@ -133,20 +134,20 @@ Token Lexer::scan(int& lineNo, int& serialNo){
 		}
 		if(peek=='\''){
 			peek=' ';
-			Word w=Word(temp,Tag.CHARCON);
+			Word w=Word(temp,Tag::CHARCON);
 			return w;
 		}
 		else if(peek=='\n'){
 			readch(serialNo);
 			back(lineNo,serialNo);
 			peek=' ';
-			Word w=Word(temp,Tag.ILLEGALCHA);
+			Word w=Word(temp,Tag::ILLEGALCHA);
 			return w;
 		}
 		else{
 			back(lineNo,serialNo);
 			peek=' ';
-			Word w=Word(temp,Tag.ILLEGALCHA);
+			Word w=Word(temp,Tag::ILLEGALCHA);
 			return w;
 		}
 	}
@@ -159,20 +160,20 @@ Token Lexer::scan(int& lineNo, int& serialNo){
 			readch(serialNo);
 		} 
 		if(peek=='"'){
-			Word w=Word(temp,Tag.STRCON);
+			Word w=Word(temp,Tag::STRCON);
 			peek=' ';
 			return w;
 		}
 		else if(peek=='\n'){
 			readch(serialNo);
 			back(lineNo,serialNo);
-			Word w=Word(temp,Tag.ILLEGALSTR);
+			Word w=Word(temp,Tag::ILLEGALSTR);
 			peek=' ';
 			return w;
 		}
 		else{
 			back(lineNo,serialNo);
-			Word w=Word(temp,Tag.ILLEGALSTR);
+			Word w=Word(temp,Tag::ILLEGALSTR);
 			peek=' ';
 			return w;
 		}

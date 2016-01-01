@@ -17,7 +17,7 @@ ConflictTable::ConflictTable(SymbolTableMgr* aSMgr,QuadrupleMgr* aQMgr)
 		row[i]=NULL;
 		finish[i]=0;
 	}
-	for(i=0;i<100;i++){
+	for(int i=0;i<100;i++){
 		for(int j=0;j<100;j++){
 			table[i][j]=0;
 		}
@@ -48,7 +48,7 @@ void ConflictTable::AddSet(Item* a[],int na){
 	for(int i=0;i<na;i++){
 		AddItem(a[i]);
 	}
-	for(i=0;i<na;i++){
+	for(int i=0;i<na;i++){
 		for(int j=0;j<na;j++){
 			table[FindItem(a[i])][FindItem(a[j])]=1;
 			table[FindItem(a[j])][FindItem(a[i])]=1;

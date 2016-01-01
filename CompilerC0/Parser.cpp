@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "Parser.h"
-#include <ctype.h>
+#include <cType.h>
 #include "define.h"
 #include "CompilerC0.h"
 
@@ -28,19 +28,19 @@ Parser::Parser(FILE *i,SymbolTableMgr* s,QuadrupleMgr* q)
 	hasmain=false;
 	funcend=false;
 	lex=Lexer(i);
-	reserve(Word("do",Tag.DOTK));
-	reserve(Word("const",Tag.CONSTTK));
-	reserve(Word("main",Tag.MAINTK));
-	reserve(Word("if",Tag.IFTK));
-	reserve(Word("else",Tag.ELSETK));
-	reserve(Word("while",Tag.WHILETK));
-	reserve(Word("for",Tag.FORTK));
-	reserve(Word("scanf",Tag.SCANFTK));
-	reserve(Word("printf",Tag.PRINTFTK));
-	reserve(Word("return",Tag.RETURNTK));
-	reserve(Type.Char);
-	reserve(Type.Int);
-	reserve(Type.Void);
+	reserve(Word("do",Tag::DOTK));
+	reserve(Word("const",Tag::CONSTTK));
+	reserve(Word("main",Tag::MAINTK));
+	reserve(Word("if",Tag::IFTK));
+	reserve(Word("else",Tag::ELSETK));
+	reserve(Word("while",Tag::WHILETK));
+	reserve(Word("for",Tag::FORTK));
+	reserve(Word("scanf",Tag::SCANFTK));
+	reserve(Word("printf",Tag::PRINTFTK));
+	reserve(Word("return",Tag::RETURNTK));
+	reserve(Type::Char);
+	reserve(Type::Int);
+	reserve(Type::Void);
 }
 
 Parser::~Parser()
@@ -100,7 +100,7 @@ bool Parser::checkKeyTokenR(string key){
 
 bool Parser::checkId(){
 	Token preToken=lex.scan(lineNo,serialNo);
-	if(preToken.tag==Tag.IDEN)
+	if(preToken.tag==Tag::IDEN)
 		return true;
 	else
 		return false;
@@ -111,7 +111,7 @@ bool Parser::checkIdR(){
 	int tl=lineNo;
 	int ts=serialNo;
 	Token preToken=lex.scan(lineNo,serialNo);
-	if(preToken.tag==Tag.IDEN){
+	if(preToken.tag==Tag::IDEN){
 		lineNo=tl;
 		serialNo=ts;
 		fsetpos(in,&tpos);
@@ -127,7 +127,7 @@ bool Parser::checkIdR(){
 void Parser::Chr(int& s){
 	lastToken=lex.scan(lineNo,serialNo);
 	string temp=lastToken.toString();
-	if(lastToken.tag==Tag.ILLEGALCHA){
+	if(lastToken.tag==Tag::ILLEGALCHA){
 		PrintNo();
 		printf("Missing '.\n");
 		s=ERR;
@@ -265,9 +265,9 @@ void Parser::ConstDef(){
 	}
 	else{
 		lastId=lex.scan(lineNo,serialNo);
-		if(lastId.tag==Tag.INTTK)
+		if(lastId.tag==Tag::INTTK)
 			t=_INT;
-		else if(lastId.tag==Tag.CHARTK)
+		else if(lastId.tag==Tag::CHARTK)
 			t=_CHAR;
 	}
 	do{
@@ -342,9 +342,9 @@ void Parser::VarDef(){
 	}
 	else{
 		lastId=lex.scan(lineNo,serialNo);
-		if(lastId.tag==Tag.INTTK)
+		if(lastId.tag==Tag::INTTK)
 			t=_INT;
-		else if(lastId.tag==Tag.CHARTK)
+		else if(lastId.tag==Tag::CHARTK)
 			t=_CHAR;
 		else
 			t=ERR;
@@ -407,9 +407,9 @@ void Parser::ValuedFuncDef(){
 	}
 	else{
 		lastId=lex.scan(lineNo,serialNo);
-		if(lastId.tag==Tag.INTTK)
+		if(lastId.tag==Tag::INTTK)
 			t=_INT;
-		else if(lastId.tag==Tag.CHARTK)
+		else if(lastId.tag==Tag::CHARTK)
 			t=_CHAR;
 		else
 			t=ERR;
@@ -622,9 +622,9 @@ void Parser::ParaTable(string n){
 			}
 			else{
 				lastId=lex.scan(lineNo,serialNo);
-				if(lastId.tag==Tag.INTTK)
+				if(lastId.tag==Tag::INTTK)
 					t=_INT;
-				else if(lastId.tag==Tag.CHARTK)
+				else if(lastId.tag==Tag::CHARTK)
 					t=_CHAR;
 				else
 					t=ERR;
@@ -879,7 +879,7 @@ bool Parser::checkChrR(){
 	int tl=lineNo;
 	int ts=serialNo;
 	Token preToken=lex.scan(lineNo,serialNo);
-	if(preToken.tag==Tag.ILLEGALCHA||preToken.tag==Tag.CHARCON){
+	if(preToken.tag==Tag::ILLEGALCHA||preToken.tag==Tag::CHARCON){
 		lineNo=tl;
 		serialNo=ts;
 		fsetpos(in,&tpos);
@@ -898,7 +898,7 @@ bool Parser::checkNumR(){
 	int ts=serialNo;
 	fgetpos(in,&tpos);
 	Token preToken=lex.scan(lineNo,serialNo);
-	if (preToken.tag == Tag.ILLEGALNUM||preToken.tag==Tag.INTCON){
+	if (preToken.tag == Tag::ILLEGALNUM||preToken.tag==Tag::INTCON){
 		lineNo=tl;
 		serialNo=ts;
 		fsetpos(in, &tpos);
@@ -920,14 +920,14 @@ void Parser::Integer(int& s){
 		signFlag=checkKeyToken("-");
 	}
 	lastToken=lex.scan(lineNo,serialNo);
-	if(lastToken.tag==Tag.ILLEGALNUM){
+	if(lastToken.tag==Tag::ILLEGALNUM){
 		temp=Num(0);
 		PrintNo();
 		printf("doulbe 0\n");
 		lastToken=temp;
 		s=_INT;
 	}
-	else if(lastToken.tag==Tag.INTCON){
+	else if(lastToken.tag==Tag::INTCON){
 		if(signFlag)
 			temp=Num("-"+lastToken.toString());
 		else
@@ -942,9 +942,9 @@ void Parser::Integer(int& s){
 	}
 }
 void Parser::AssignStat(){
-	Item* i1;
-	Item* index;
-	Item* i2;
+	Item* i1 = NULL;
+	Item* index=NULL;
+	Item* i2 = NULL;
 	bool flag=false;
 	lastId=lex.scan(lineNo,serialNo);
 	AssignStat_Find(lastId.toString(),i1);
@@ -1158,11 +1158,11 @@ void Parser::loopStat(){
 }
 void Parser::Step(Item*& i){
 	lastToken=lex.scan(lineNo,serialNo);
-	if(lastToken.tag!=Tag.ILLEGALNUM&&lastToken.tag!=Tag.INTCON){
+	if(lastToken.tag!=Tag::ILLEGALNUM&&lastToken.tag!=Tag::INTCON){
 		PrintNo();
 		printf("Only integer!\n");
 	}
-	else if(lastToken.tag==Tag.ILLEGALNUM){
+	else if(lastToken.tag==Tag::ILLEGALNUM){
 		PrintNo();
 		printf("double 0\n");
 	}
@@ -1280,7 +1280,7 @@ void Parser::WriteStat(){
 		checkKeyToken("(");
 	getFPos(in,&pos);
 	lastToken=lex.scan(lineNo,serialNo);
-	if(lastToken.tag==Tag.STRCON||lastToken.tag==Tag.ILLEGALSTR){
+	if(lastToken.tag==Tag::STRCON||lastToken.tag==Tag::ILLEGALSTR){
 		setFPos(in,&pos);
 		Str(i1);
 		if(checkKeyTokenR(",")){
@@ -1343,7 +1343,7 @@ void Parser::Str(Item*& i){
 	int j;
 	lastToken=lex.scan(lineNo,serialNo);
 	string temp=lastToken.toString();
-	if(lastToken.tag==Tag.ILLEGALSTR){
+	if(lastToken.tag==Tag::ILLEGALSTR){
 		PrintNo();
 		printf("Expected \"\n");
 	}
@@ -1439,7 +1439,7 @@ void Parser::VarDef_Alloc(int size,int t, string n,bool arr){
 	}
 	else{
 		char cc[5];
-		itoa(size,cc,10);
+		_itoa_s(size,cc,10);
 		string ss(cc);
 		Item* tSize=QMgr->NewCItem(_INT,cc);
 		if(t==_INT)
@@ -1552,7 +1552,7 @@ void Parser::ParaTable_Insert(string n, int t, string s, int c){
 	else{
 		if(SMgr->AllCapsLayerCheck(s)==-1){
 			char cc[5];
-			itoa(c*4+8,cc,16);
+			_itoa_s(c*4+8,cc,16);
 			string ss(cc);
 			SMgr->Insert(s,VAR,t,ss,0);
 			QMgr->NewQuad(_IN,SMgr->AllCapsFind(s));

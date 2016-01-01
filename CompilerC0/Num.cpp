@@ -12,7 +12,7 @@ Num::Num(std::string nn)
 	std::stringstream temp("");
 	temp<<nn;
 	temp>>value;	
-	tag=Tag.INTCON;
+	tag=Tag::INTCON;
 	width=0;
 	num=true;
 	word=false;
@@ -22,7 +22,7 @@ Num::Num(std::string nn)
 
 Num::Num(int v)
 {
-	tag=Tag.INTCON;
+	tag=Tag::INTCON;
 	value=v;
 	std::stringstream temp("");
 	temp<<value;

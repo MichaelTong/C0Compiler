@@ -25,7 +25,7 @@ GRDOptimizer::GRDOptimizer(SymbolTableMgr* aSMgr, QuadrupleMgr* aQMgr, BBSetMgr*
 		bbs[i] = abbs[i];
 	}
 	ctNumber = abbsNumber;
-	for (i = 0; i < bbsNumber; i ++){
+	for (int i = 0; i < bbsNumber; i ++){
 		ct[i] = new ConflictTable(aSMgr, aQMgr);
 	}
 }
@@ -74,18 +74,18 @@ void GRDOptimizer::AddRegItem(int n, Item* i){
 			break;
 		}
 	}
-	for (j = bbs[n] -> procEnd - 1; j > bbs[n] -> procHead + 1; j --){
+	for (int j = bbs[n] -> procEnd - 1; j > bbs[n] -> procHead + 1; j --){
 		if (QMgr -> QuadList[j] -> Src1 == i || QMgr -> QuadList[j] -> Src2 == i || QMgr -> QuadList[j] -> Obj == i){
 			itemEnd = j;
 			break;
 		}
 	}
-	for (j = itemHead; j <= itemEnd; j ++){
+	for (int j = itemHead; j <= itemEnd; j ++){
 		if (QMgr -> QuadList[j] -> Opr == CALL || QMgr -> QuadList[j] -> Opr == ECALL)
 			return;
 	}
 	
-	for (j = bbs[n] -> procHead + 1; j < bbs[n] -> procEnd - 1; j ++){
+	for (int j = bbs[n] -> procHead + 1; j < bbs[n] -> procEnd - 1; j ++){
 		if (QMgr -> QuadList[j] -> Src1 == i || QMgr -> QuadList[j] -> Src2 == i || QMgr -> QuadList[j] -> Obj == i){
 			if (QMgr -> QuadList[j] -> Opr == WR || QMgr -> QuadList[j] -> Opr == RD)
 				return;

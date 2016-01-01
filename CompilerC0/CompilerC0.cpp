@@ -54,7 +54,7 @@ void preProcess(FILE*& in,char* filename,string& path,string& file,string& asmpa
 	}
 	if(start>end)
 		end=j;
-	for(i=start+1;i<end;i++){
+	for(int i=start+1;i<end;i++){
 		file+=filename[i];
 	}
 	//get path for .asm

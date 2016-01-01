@@ -33,7 +33,7 @@ void DSAOptimizer::Initial(){
 			a ++;
 	}
 	
-	for (i = 0; i < a; i ++){
+	for (int i = 0; i < a; i ++){
 		mb = NewBBSMgr(SMgr, QMgr, NULL);
 		mb -> GetProcArea(i);
 		mb -> DivideBlock();

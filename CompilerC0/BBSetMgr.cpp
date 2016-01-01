@@ -55,7 +55,7 @@ void BBSetMgr::DivideBlock(){
 		avail[i] = 1;
 	}
 	int startNumber = 0;
-	for (i = procHead + 1; i <= procEnd - 1; i ++){
+	for (int i = procHead + 1; i <= procEnd - 1; i ++){
 		if (i == procHead + 1){
 			start[startNumber] = i;
 			startNumber ++;
@@ -87,10 +87,10 @@ void BBSetMgr::DivideBlock(){
 				startNumber ++;
 		}
 	}
-	for (i = 0; i < startNumber - 1; i ++)
+	for (int i = 0; i < startNumber - 1; i ++)
 		end[i] = start[i + 1] - 2;
 	end[startNumber - 1] = procEnd - 1;
-	for (i = 0; i < startNumber; i ++){
+	for (int i = 0; i < startNumber; i ++){
 		while (start[i] <= end[i] && (QMgr -> QuadList[start[i]] -> Opr == EGTO || QMgr -> QuadList[start[i]] -> Opr == GTO
 			|| QMgr -> QuadList[start[i]] -> Opr == LAB || QMgr -> QuadList[start[i]] -> Opr == RET || QMgr -> QuadList[start[i]] -> Opr == NRET
 			|| QMgr -> QuadList[start[i]] -> Opr == ARG || QMgr -> QuadList[start[i]] -> Opr == CALL|| QMgr -> QuadList[start[i]] -> Opr == ECALL
@@ -116,13 +116,13 @@ void BBSetMgr::DivideBlock(){
 		if (start[i] > end[i])
 			avail[i] = 0;
 	}
-	for (i = 0; i < startNumber; i ++){
+	for (int i = 0; i < startNumber; i ++){
 		if (avail[i])
 			NewBlock(SMgr, QMgr, start[i], end[i]);
 	}
 	NewBlock(SMgr, QMgr, 0, 0);
 
-	for (i = procHead + 1; i <= procEnd - 1; i ++){
+	for (int i = procHead + 1; i <= procEnd - 1; i ++){
 		if (QMgr -> QuadList[i] -> Opr == GTO){
 			Item* label = QMgr -> QuadList[i] -> Src1;
 			for (int j = procHead + 1; j <= procEnd - 1; j ++){

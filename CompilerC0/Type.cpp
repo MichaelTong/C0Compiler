@@ -1,4 +1,4 @@
-// Type.cpp: implementation of the Type class.
+// Type::cpp: implementation of the Type class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -29,6 +29,6 @@ Type::~Type()
 
 }
 
-const Type Type::Int=Type("int",Tag.INTTK,8);
-const Type Type::Char=Type("char",Tag.CHARTK,8);
-const Type Type::Void=Type("void",Tag.VOIDTK,0);
+const Type Type::Int=Type("int",Tag::INTTK,8);
+const Type Type::Char=Type("char",Tag::CHARTK,8);
+const Type Type::Void=Type("void",Tag::VOIDTK,0);

@@ -1,4 +1,4 @@
-// Word.cpp: implementation of the Word class.
+// Word::cpp: implementation of the Word class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -27,12 +27,12 @@ Word::~Word()
 	lexeme.~basic_string();
 }
 
-const Word Word::lss=Word("<",Tag.ASSIGN);
-const Word Word::leq=Word("<=",Tag.LEQ);
-const Word Word::gre=Word(">",Tag.GRE);
-const Word Word::geq=Word(">=",Tag.GEQ);
-const Word Word::eql=Word("==",Tag.EQL);
-const Word Word::neq=Word("!=",Tag.NEQ);
+const Word Word::lss=Word("<",Tag::ASSIGN);
+const Word Word::leq=Word("<=",Tag::LEQ);
+const Word Word::gre=Word(">",Tag::GRE);
+const Word Word::geq=Word(">=",Tag::GEQ);
+const Word Word::eql=Word("==",Tag::EQL);
+const Word Word::neq=Word("!=",Tag::NEQ);
 
 std::string Word::toString()
 {

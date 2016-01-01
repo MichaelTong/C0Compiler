@@ -33,7 +33,7 @@ QuadrupleMgr::~QuadrupleMgr()
 		delete QuadList[i];
 		QuadList[i] = NULL;
 	}
-	for (i = 0; i < ItemNumber; i ++){
+	for (int i = 0; i < ItemNumber; i ++){
 		delete ItemList[i];
 		ItemList[i] = NULL;
 	}
@@ -67,12 +67,12 @@ Quadruple* QuadrupleMgr::NewQuad(int aOpr, Item* aSrc1, Item* aSrc2, Item* aObj)
 Item* QuadrupleMgr::NewItem(int atype, SymbolTable* aParentTable){
 	string temp = "t";
 	char c[5];
-	itoa(ItemNumber, c, 10);
+	_itoa_s(ItemNumber, c, 10);
 	string s(c);
 	temp += s;
 	if (ItemNumber != 0 && ItemList[ItemNumber - 1] -> pParentTable == aParentTable){
 		char c[5];
-		itoa(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
+		_itoa_s(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
 		string s(c);
 		ItemList[ItemNumber] = new Item(temp, TEMP, atype, s, 0, aParentTable);
 		TItemNumberInProc[TProcNumber] ++;
@@ -81,7 +81,7 @@ Item* QuadrupleMgr::NewItem(int atype, SymbolTable* aParentTable){
 		if (ItemNumber != 0)
 			TProcNumber ++;
 		char c[5];
-		itoa(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
+		_itoa_s(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
 		string s(c);
 		ItemList[ItemNumber] = new Item(temp, TEMP, atype, s, 0, aParentTable);
 		TItemNumberInProc[TProcNumber] ++;
@@ -92,11 +92,11 @@ Item* QuadrupleMgr::NewItem(int atype, SymbolTable* aParentTable){
 Item* QuadrupleMgr::NewItem(int atype, SymbolTable* aParentTable, int aProcNumber){
 	string temp = "tt";
 	char c[5];
-	itoa(ItemNumber, c, 10);
+	_itoa_s(ItemNumber, c, 10);
 	string s(c);
 	temp += s;
 
-	itoa(TItemNumberInProc[aProcNumber] * 4 + 4, c, 16);
+	_itoa_s(TItemNumberInProc[aProcNumber] * 4 + 4, c, 16);
 	string ss(c);
 	ItemList[ItemNumber] = new Item(temp, TEMP, atype, ss, 0, aParentTable);
 	TItemNumberInProc[aProcNumber] ++;
@@ -107,7 +107,7 @@ Item* QuadrupleMgr::NewItem(int atype, SymbolTable* aParentTable, int aProcNumbe
 void QuadrupleMgr::NewItemForInVar(Item* i){
 	if (ItemNumber != 0 && ItemList[ItemNumber - 1] -> pParentTable == i ->pParentTable){
 		char c[5];
-		itoa(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
+		_itoa_s(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
 		string s(c);
 		i ->value = s;
 		ItemList[ItemNumber] = i;
@@ -117,7 +117,7 @@ void QuadrupleMgr::NewItemForInVar(Item* i){
 		if (ItemNumber != 0)
 			TProcNumber ++;
 		char c[5];
-		itoa(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
+		_itoa_s(TItemNumberInProc[TProcNumber] * 4 + 4, c, 16);
 		string s(c);
 		i ->value = s;
 		ItemList[ItemNumber] = i;
@@ -128,7 +128,7 @@ void QuadrupleMgr::NewItemForInVar(Item* i){
 void QuadrupleMgr::NewItemForInVarArray(Item* i,int size){
 	if (ItemNumber != 0 && ItemList[ItemNumber - 1] -> pParentTable == i ->pParentTable){
 		char c[5];
-		itoa(TItemNumberInProc[TProcNumber] * 4 + size*4, c, 16);
+		_itoa_s(TItemNumberInProc[TProcNumber] * 4 + size*4, c, 16);
 		string s(c);
 		i ->value = s;
 		ItemList[ItemNumber] = i;
@@ -138,7 +138,7 @@ void QuadrupleMgr::NewItemForInVarArray(Item* i,int size){
 		if (ItemNumber != 0)
 			TProcNumber ++;
 		char c[5];
-		itoa(TItemNumberInProc[TProcNumber] * 4 + size*4, c, 16);
+		_itoa_s(TItemNumberInProc[TProcNumber] * 4 + size*4, c, 16);
 		string s(c);
 		i ->value = s;
 		ItemList[ItemNumber] = i;
@@ -151,7 +151,7 @@ void QuadrupleMgr::NewItemForInVarArray(Item* i,int size){
 Item* QuadrupleMgr::NewCItem(int atype, string avalue){//const temp
 	string temp = "c";
 	char c[5];
-	itoa(CItemNumber, c, 10);
+	_itoa_s(CItemNumber, c, 10);
 	string s(c);
 	temp += s;
 	CItemList[CItemNumber] = new Item(temp, CONSTTEMP, atype, avalue, 0, NULL);
@@ -162,7 +162,7 @@ Item* QuadrupleMgr::NewCItem(int atype, string avalue){//const temp
 Item* QuadrupleMgr::NewLItem(){//label
 	string temp = "@l";
 	char c[5];
-	itoa(LItemNumber, c, 10);
+	_itoa_s(LItemNumber, c, 10);
 	string s(c);
 	temp += s;
 	LItemList[LItemNumber] = new Item(temp, LAB, 0, temp, 0, NULL);
@@ -173,7 +173,7 @@ Item* QuadrupleMgr::NewLItem(){//label
 Item* QuadrupleMgr::NewSItem(string avalue){
 	string temp = "s";
 	char c[5];
-	itoa(SItemNumber, c, 10);
+	_itoa_s(SItemNumber, c, 10);
 	string s(c);
 	temp += s;
 	SItemList[SItemNumber] = new Item(temp, CONSTTEMP, STRING, avalue, 0, NULL);

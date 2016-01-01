@@ -22,13 +22,13 @@ CSDOptimizer::CSDOptimizer(SymbolTableMgr* aSMgr, QuadrupleMgr* aQMgr, BBSetMgr*
 		bbs[i] = abbs[i];
 	}
 
-	for (i = 0; i < 1000; i ++)
+	for (int i = 0; i < 1000; i ++)
 		node[i] = NULL;
-	for (i = 0; i < 1000; i ++)
+	for (int i = 0; i < 1000; i ++)
 		table[i] = NULL;
-	for (i = 0; i < 1000; i ++)
+	for (int i = 0; i < 1000; i ++)
 		queue[i] = NULL;
-	for (i = 0; i < 1000; i ++)
+	for (int i = 0; i < 1000; i ++)
 		quad[i] = NULL;
 }
 
@@ -79,13 +79,13 @@ void CSDOptimizer::ClearAll(){
 	for (int i = 0; i < nodeNumber; i ++)
 		node[i] = NULL;
 	nodeNumber = 0;
-	for (i = 0; i < tableNumber; i ++)
+	for (int i = 0; i < tableNumber; i ++)
 		table[i] = NULL;
 	tableNumber = 0;
-	for (i = 0; i < queueNumber; i ++)
+	for (int i = 0; i < queueNumber; i ++)
 		queue[i] = -1;
 	queueNumber = 0;
-	for (i = 0; i < quadNumber; i ++)
+	for (int i = 0; i < quadNumber; i ++)
 		quad[i] = NULL;
 	quadNumber = 0;
 	
@@ -103,7 +103,7 @@ void CSDOptimizer::Replace(int astart, int aend, int wstart, int wend){
 			j ++;
 		}
 		int k = wend;
-		for (i = wstart + aend - astart + 1; i < QMgr -> QuadNumber - sub; i++){
+		for (int i = wstart + aend - astart + 1; i < QMgr -> QuadNumber - sub; i++){
 			QMgr -> QuadList[i] = QMgr -> QuadList[k + 1];
 			k ++;
 		}
