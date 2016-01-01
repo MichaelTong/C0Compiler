@@ -38,7 +38,7 @@ void preProcess(FILE*& in,char* filename,string& path,string& file,string& asmpa
 	cout<<"File successfully opened."<<endl;
 	//get path
 	string tpath(filename);
-	while (tpath[tpath.length() - 1] != '\\'){
+	while (tpath[tpath.length() - 1] != '\\' && tpath[tpath.length() - 1] != '\/'&& tpath.length()>1){
 		tpath.resize(tpath.size() - 1);
 	}
 	path=tpath;
