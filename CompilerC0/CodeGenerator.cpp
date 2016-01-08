@@ -211,7 +211,7 @@ void CodeGenerator::GenRet(Quadruple* i){
 // 			string EndLabel="@label_";
 // 			EndLabel+=GetQuad(j)->Src1->lexeme;
 			char c[5];
-			itoa(k*4,c,16);
+			_itoa_s(k*4,c,16);
 			string s(c);
 			fs<<"\t"<<"add\tesp,100h"<<endl;
 			fs<<"\t"<<"pop\tebp"<<endl;
@@ -232,7 +232,7 @@ void CodeGenerator::GenNRet(Quadruple* i){
 // 	string EndLabel="@label_";
 // 	EndLabel+=GetQuad(j)->Src1->lexeme;
 	char c[5];
-	itoa(n*4,c,16);
+	_itoa_s(n*4,c,16);
 	string s(c);
 	fs<<"\t"<<"mov\teax,"<<ResolveItem(i->Src1)<<endl;
 	fs<<"\t"<<"add\tesp,100h"<<endl;
@@ -243,7 +243,8 @@ void CodeGenerator::GenNRet(Quadruple* i){
 void CodeGenerator::GenEnd(Quadruple* i){
 	int ismain;
 /*	string EndLabel="@label_";*/
-	for(int j=CurrentQuad-1;j>=0;j--){
+	int j;
+	for(j=CurrentQuad-1;j>=0;j--){
 		if(GetQuad(j)->Opr==BEGIN){
 			if(GetQuad(j)->Src1->lexeme=="a@main"){
 				ismain=1;
@@ -325,7 +326,7 @@ void CodeGenerator::GenRelCal(Quadruple* i){
 	string l1,l2;
 	label="@label";
 	char c[5];
-	itoa(localLabelNumber,c,10);
+	_itoa_s(localLabelNumber,c,10);
 	string s(c);
 	label+=s;
 	l1=label;

@@ -51,7 +51,7 @@ int SymbolTableMgr::Check(string aname){
 
 int SymbolTableMgr::AllCapsCheck(string aname){
 	if (IsKeyWord(aname)){
-		//printf("The name conflicts with the key word.\n");
+		//printf("The name conflicts with the key Word::\n");
 		return 0;
 	}
 	int res = pCurrentTable -> AllCapsCheck(aname);
@@ -95,7 +95,7 @@ int SymbolTableMgr::LayerCheck(string aname){
 
 int SymbolTableMgr::AllCapsLayerCheck(string aname){
 	if (IsKeyWord(aname)){
-		//printf("The name conflicts with the key word.\n");
+		//printf("The name conflicts with the key Word::\n");
 		return 0;
 	}
 	int res = pCurrentTable -> AllCapsCheck(aname);
@@ -133,7 +133,8 @@ Item* SymbolTableMgr::AllCapsLayerFind(string aname){
 }
 
 int SymbolTableMgr::LayerFindNo(string aname){
-	for (int i = 0; i < pCurrentTable -> itemNumber; i ++){
+	int i;
+	for (i = 0; i < pCurrentTable -> itemNumber; i ++){
 		if (pCurrentTable -> itemList[i] -> lexeme == aname){
 			break;
 		}
@@ -144,7 +145,8 @@ int SymbolTableMgr::LayerFindNo(string aname){
 }
 
 int SymbolTableMgr::AllCapsLayerFindNo(string aname){
-	for (int i = 0; i < pCurrentTable -> itemNumber; i ++){
+	int i;
+	for (i = 0; i < pCurrentTable -> itemNumber; i ++){
 		if (pCurrentTable -> itemList[i] -> lexeme == aname){
 			break;
 		}

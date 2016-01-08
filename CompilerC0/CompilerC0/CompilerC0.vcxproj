@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F3EACF7A-7668-45F1-AC9C-E01D3A08C1D5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CompilerC0</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BasicBlock.h" />
+    <ClInclude Include="..\BBSetMgr.h" />
+    <ClInclude Include="..\CodeGenerator.h" />
+    <ClInclude Include="..\CompilerC0.h" />
+    <ClInclude Include="..\ConflictTable.h" />
+    <ClInclude Include="..\CSDOptimizer.h" />
+    <ClInclude Include="..\DAGNode.h" />
+    <ClInclude Include="..\DAGTable.h" />
+    <ClInclude Include="..\define.h" />
+    <ClInclude Include="..\DSAOptimizer.h" />
+    <ClInclude Include="..\DTS.h" />
+    <ClInclude Include="..\Executor.h" />
+    <ClInclude Include="..\GRDOptimizer.h" />
+    <ClInclude Include="..\Item.h" />
+    <ClInclude Include="..\Lexer.h" />
+    <ClInclude Include="..\Num.h" />
+    <ClInclude Include="..\Parser.h" />
+    <ClInclude Include="..\Quadruple.h" />
+    <ClInclude Include="..\QuadrupleMgr.h" />
+    <ClInclude Include="..\SymbolTable.h" />
+    <ClInclude Include="..\SymbolTableMgr.h" />
+    <ClInclude Include="..\Tag.h" />
+    <ClInclude Include="..\Token.h" />
+    <ClInclude Include="..\Type.h" />
+    <ClInclude Include="..\Windows.h" />
+    <ClInclude Include="..\Word.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\BasicBlock.cpp" />
+    <ClCompile Include="..\BBSetMgr.cpp" />
+    <ClCompile Include="..\CodeGenerator.cpp" />
+    <ClCompile Include="..\CompilerC0.cpp" />
+    <ClCompile Include="..\ConflictTable.cpp" />
+    <ClCompile Include="..\CSDOptimizer.cpp" />
+    <ClCompile Include="..\DAGNode.cpp" />
+    <ClCompile Include="..\DAGTable.cpp" />
+    <ClCompile Include="..\DSAOptimizer.cpp" />
+    <ClCompile Include="..\DTS.cpp" />
+    <ClCompile Include="..\Executor.cpp" />
+    <ClCompile Include="..\func.cpp" />
+    <ClCompile Include="..\GRDOptimizer.cpp" />
+    <ClCompile Include="..\Item.cpp" />
+    <ClCompile Include="..\Lexer.cpp" />
+    <ClCompile Include="..\Num.cpp" />
+    <ClCompile Include="..\Parser.cpp" />
+    <ClCompile Include="..\Quadruple.cpp" />
+    <ClCompile Include="..\QuadrupleMgr.cpp" />
+    <ClCompile Include="..\SymbolTable.cpp" />
+    <ClCompile Include="..\SymbolTableMgr.cpp" />
+    <ClCompile Include="..\Tag.cpp" />
+    <ClCompile Include="..\Token.cpp" />
+    <ClCompile Include="..\Type.cpp" />
+    <ClCompile Include="..\Word.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

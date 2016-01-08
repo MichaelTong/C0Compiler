@@ -26,7 +26,7 @@ BasicBlock::BasicBlock(SymbolTableMgr* s,QuadrupleMgr* q,int astart,int aend)
 		use[i] = NULL;
 		def[i] = NULL;
 	}
-	for (i = 0; i < 10; i ++){
+	for (int i = 0; i < 10; i ++){
 		preBB[i] = NULL;
 		nextBB[i] = NULL;
 	}
@@ -66,7 +66,7 @@ void BasicBlock::Union(Item* a[], int na, Item* b[], int nb, Item* c[], int& nc)
 	for (int i = 0; i < na; i ++)
 		c[i] = a[i];
 	nc = na;
-	for (i = 0; i < nb; i ++){
+	for (int i = 0; i < nb; i ++){
 		if (FindItem(c, nc, b[i]) == -1){
 			c[nc] = b[i];
 			nc ++;
@@ -79,7 +79,7 @@ void BasicBlock::Minus(Item* a[], int na, Item* b[], int nb, Item* c[], int& nc)
 	for (int i = 0; i < na; i ++)
 		c[i] = a[i];
 	nc = na;
-	for (i = 0; i < nb; i ++){
+	for (int i = 0; i < nb; i ++){
 		if (FindItem(c, nc, b[i]) != -1){
 			k = FindItem(c, nc, b[i]);
 			for (int j = k + 1; j < nc; j ++)
@@ -148,13 +148,13 @@ int BasicBlock::CalInOut(){
 	for (int i=0;i<inNumber;i++)
 		pre[i]=in[i];
 	preNumber=inNumber;
-	for(i=0;i<nextBBNumber;i++){
+	for(int i=0;i<nextBBNumber;i++){
 		Union(out,outNumber,nextBB[i]->in,nextBB[i]->inNumber,out,outNumber);
 	}
 	Minus(out,outNumber,def,defNumber,temp,tempNumber);
 	Union(use,useNumber,temp,tempNumber,in,inNumber);
 	if(preNumber==inNumber){
-		for(i=0;i<inNumber;i++){
+		for(int i=0;i<inNumber;i++){
 			if(FindItem(pre,preNumber,in[i])==-1)
 				return -1;
 		}
@@ -175,7 +175,7 @@ void BasicBlock::Display(){
 	cout << endl;
 	
 	cout << "def: ";
-	for (i = 0; i < defNumber - 1; i ++){
+	for (int i = 0; i < defNumber - 1; i ++){
 		cout << def[i] -> lexeme << ", ";
 	}
 	if (defNumber >= 1)
@@ -183,7 +183,7 @@ void BasicBlock::Display(){
 	cout << endl;
 	
 	cout << "in: ";
-	for (i = 0; i < inNumber - 1; i ++){
+	for (int i = 0; i < inNumber - 1; i ++){
 		cout << in[i] -> lexeme << ", ";
 	}
 	if (inNumber >= 1)
@@ -191,7 +191,7 @@ void BasicBlock::Display(){
 	cout << endl;
 	
 	cout << "out: ";
-	for (i = 0; i < outNumber - 1; i ++){
+	for (int i = 0; i < outNumber - 1; i ++){
 		cout << out[i] -> lexeme << ", ";
 	}
 	if (outNumber >= 1)
